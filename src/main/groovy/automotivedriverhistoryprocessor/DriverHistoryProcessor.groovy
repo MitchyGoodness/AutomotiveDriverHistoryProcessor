@@ -1,8 +1,8 @@
 package automotivedriverhistoryprocessor
 
-import main.groovy.exception.InvalidAutomotiveDriverLogInput
-import main.groovy.exception.InvalidMilitaryTimeStamp
-import main.groovy.io.InputHandlerFactory
+import exception.InvalidAutomotiveDriverLogInput
+import exception.InvalidMilitaryTimeStamp
+import io.InputHandlerFactory
 
 import java.time.LocalTime
 import java.util.regex.Pattern

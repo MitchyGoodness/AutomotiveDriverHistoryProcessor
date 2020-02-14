@@ -1,4 +1,4 @@
-package main.groovy
+package automotivedriverhistoryprocessor
 
 import groovy.transform.ToString
 
