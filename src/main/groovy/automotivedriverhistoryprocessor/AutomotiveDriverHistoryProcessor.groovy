@@ -7,7 +7,7 @@ import io.InputHandlerFactory
 import java.time.LocalTime
 import java.util.regex.Pattern
 
-class DriverHistoryProcessor {
+class AutomotiveDriverHistoryProcessor {
     final static Pattern INTEGER_OR_DOUBLE = ~/^\d+|\d+\.\d+$/
     final static Pattern MILITARY_TIME_FORMAT = ~/^[0-2][0-9]:[0-6][0-9]$/
 
