@@ -35,7 +35,12 @@ class AutomotiveDriverHistoryProcessor {
 
             case "Trip":
                 if (args.size() == 3)
-                    history.addTrip(automotiveDriverName, args[0], args[1], args[2])
+                    history.addTrip(
+                            automotiveDriverName,
+                            parseTime("start time", args[0]),
+                            parseTime("end time", args[1]),
+                            parseDistance(args[2])
+                    )
                 else
                     throw new InvalidAutomotiveDriverLogInput($/"$input" had the wrong number of arguments./$)
                 break
@@ -45,24 +50,20 @@ class AutomotiveDriverHistoryProcessor {
         }
     }
 
-    LocalTime parseTime(String timeStamp) {
+    LocalTime parseTime(String timeType, String timeStamp) {
+        validateTimeInput(timeType, timeStamp)
+
         List timeParts = timeStamp.split(":")
         LocalTime.of((timeParts[0] as Integer), (timeParts[1] as Integer))
     }
 
     Double parseDistance(String distance) {
+        validateDistanceInput(distance)
+
         distance as Double
     }
 
-    protected void validateStartTimeInput(String startTime) throws InvalidMilitaryTimeStamp {
-        validateTimeInput("startTime", startTime)
-    }
-
-    protected void validateEndTimeInput(String endTime) throws InvalidMilitaryTimeStamp {
-        validateTimeInput("endTime", endTime)
-    }
-
-    protected void validateDistanceInput(String distance) throws InvalidAutomotiveDriverLogInput {
+    private void validateDistanceInput(String distance) throws InvalidAutomotiveDriverLogInput {
         if (!distance)
             throw new InvalidAutomotiveDriverLogInput($/Missing input "distance" for trip log./$)
 
@@ -75,6 +76,6 @@ class AutomotiveDriverHistoryProcessor {
             throw new InvalidAutomotiveDriverLogInput($/Missing input "$timeType"/$)
 
         if (!(timeStamp ==~ MILITARY_TIME_FORMAT))
-            throw new InvalidMilitaryTimeStamp($/Expected kk:mm (military time) format, got "$timeStamp"./$)
+            throw new InvalidMilitaryTimeStamp($/Expected $timeType in kk:mm (military time) format, got "$timeStamp"./$)
     }
 }
