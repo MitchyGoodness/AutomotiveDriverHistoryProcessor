@@ -21,6 +21,6 @@ class AutomotiveDriverHistory {
         if (driver)
             driver.addTrip(new Trip(startDate, endDate, distance))
         else
-            throw new exception.InvalidAutomotiveDriverLogInput("$name not found in list of automotive drivers.")
+            throw new InvalidAutomotiveDriverLogInput("$name not found in list of automotive drivers.")
     }
 }
