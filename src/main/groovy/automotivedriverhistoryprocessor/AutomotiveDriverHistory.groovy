@@ -1,9 +1,11 @@
 package automotivedriverhistoryprocessor
 
 import exception.InvalidAutomotiveDriverLogInput
+import groovy.transform.ToString
 
 import java.time.LocalTime
 
+@ToString
 class AutomotiveDriverHistory {
     List<AutomotiveDriver> drivers
 
@@ -22,5 +24,10 @@ class AutomotiveDriverHistory {
             driver.addTrip(new Trip(startDate, endDate, distance))
         else
             throw new InvalidAutomotiveDriverLogInput("$name not found in list of automotive drivers.")
+    }
+
+    @Override
+    String toString() {
+        drivers.sort().join("\n")
     }
 }

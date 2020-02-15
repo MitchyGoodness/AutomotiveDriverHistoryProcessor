@@ -4,11 +4,9 @@ import io.InputHandlerFactory
 
 class Main {
     static void main(String... args) {
-        AutomotiveDriverHistoryProcessor processor = new AutomotiveDriverHistoryProcessor()
-        AutomotiveDriverHistory history = new AutomotiveDriverHistory()
         List<String> textInputs = new InputHandlerFactory(args).getInputHandler().getTextInputs()
+        AutomotiveDriverHistory history = new AutomotiveDriverHistoryProcessor(textInputs).getHistory()
 
-        textInputs.each { String textInput -> processor.processInput(history, textInput) }
-        history.drivers.sort().each { AutomotiveDriver driverLog -> println driverLog }
+        println history
     }
 }

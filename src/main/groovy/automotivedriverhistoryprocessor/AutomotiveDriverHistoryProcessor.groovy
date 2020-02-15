@@ -10,13 +10,28 @@ class AutomotiveDriverHistoryProcessor {
     final static Pattern INTEGER_OR_DOUBLE = ~/^\d+|\d+\.\d+$/
     final static Pattern MILITARY_TIME_FORMAT = ~/^[0-2][0-9]:[0-6][0-9]$/
 
-    AutomotiveDriverHistoryProcessor() {}
+    List<String> textInputs
+    AutomotiveDriverHistory history
 
-    void processInput(AutomotiveDriverHistory history, String input) {
+    AutomotiveDriverHistoryProcessor(List<String> textInputs) {
+        this.textInputs = textInputs
+        this.history = new AutomotiveDriverHistory()
+    }
+
+    AutomotiveDriverHistory getHistory(){
+        processInputs(textInputs)
+        this.history
+    }
+
+    void processInputs(List<String> textInputs) {
+        textInputs.each { String textInput -> processInput(textInput) }
+    }
+
+    void processInput(String input) {
         List<String> args = input.split()
 
-        String command = args?.pop()
-        String automotiveDriverName = args?.pop()
+        String command = args?.remove(0)
+        String automotiveDriverName = args?.remove(0)
 
         switch (command) {
             case "Driver":
@@ -42,6 +57,8 @@ class AutomotiveDriverHistoryProcessor {
                 throw new InvalidAutomotiveDriverLogInput("$command is not a valid command.")
         }
     }
+
+
 
     LocalTime parseTime(String timeType, String timeStamp) {
         validateTimeInput(timeType, timeStamp)
