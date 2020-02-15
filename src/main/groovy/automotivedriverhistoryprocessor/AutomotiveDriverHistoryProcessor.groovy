@@ -18,7 +18,7 @@ class AutomotiveDriverHistoryProcessor {
         this.history = new AutomotiveDriverHistory()
     }
 
-    AutomotiveDriverHistory getHistory(){
+    AutomotiveDriverHistory getHistory() {
         processInputs(textInputs)
         this.history
     }
@@ -30,34 +30,41 @@ class AutomotiveDriverHistoryProcessor {
     void processInput(String input) {
         List<String> args = input.split()
 
-        String command = args?.remove(0)
-        String automotiveDriverName = args?.remove(0)
+        String command = args[0]
 
         switch (command) {
             case "Driver":
-                if (command && automotiveDriverName)
-                    history.addDriver(automotiveDriverName)
-                else
-                    throw new InvalidAutomotiveDriverLogInput($/"$input" had the wrong number of arguments./$)
+                addDriver(args)
                 break
 
             case "Trip":
-                if (args.size() == 3)
-                    history.addTrip(
-                            automotiveDriverName,
-                            parseTime("start time", args[0]),
-                            parseTime("end time", args[1]),
-                            parseDistance(args[2])
-                    )
-                else
-                    throw new InvalidAutomotiveDriverLogInput($/"$input" had the wrong number of arguments./$)
+                addTrip(args)
                 break
 
             default:
-                throw new InvalidAutomotiveDriverLogInput("$command is not a valid command.")
+                throw new InvalidAutomotiveDriverLogInput("$command is not a valid command from input: $input")
         }
     }
 
+    void addDriver(List<String> args) {
+        if (args.size() == 2)
+            history.addDriver(args[1])
+        else
+            throw new InvalidAutomotiveDriverLogInput($/Command "Driver" expects 1 parameter got: ${args.join(" ")}./$)
+
+    }
+
+    void addTrip(List<String> args) {
+        if (args.size() == 5)
+            history.addTrip(
+                    args[0],
+                    parseTime("start time", args[0]),
+                    parseTime("end time", args[1]),
+                    parseDistance(args[2])
+            )
+        else
+            throw new InvalidAutomotiveDriverLogInput($/Command "Trip" expects 4 parameter got: ${args.join(" ")}./$)
+    }
 
 
     LocalTime parseTime(String timeType, String timeStamp) {
