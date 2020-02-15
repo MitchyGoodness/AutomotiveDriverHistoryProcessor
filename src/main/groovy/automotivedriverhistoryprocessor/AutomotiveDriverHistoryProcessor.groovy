@@ -57,10 +57,10 @@ class AutomotiveDriverHistoryProcessor {
     void addTrip(List<String> args) {
         if (args.size() == 5)
             history.addTrip(
-                    args[0],
-                    parseTime("start time", args[0]),
-                    parseTime("end time", args[1]),
-                    parseDistance(args[2])
+                    args[1],
+                    parseTime("start time", args[2]),
+                    parseTime("end time", args[3]),
+                    parseDistance(args[4])
             )
         else
             throw new InvalidAutomotiveDriverLogInput($/Command "Trip" expects 4 parameter got: ${args.join(" ")}./$)
