@@ -2,7 +2,6 @@ package automotivedriverhistoryprocessor
 
 import exception.InvalidAutomotiveDriverLogInput
 import exception.InvalidMilitaryTimeStamp
-import io.InputHandlerFactory
 
 import java.time.LocalTime
 import java.util.regex.Pattern
@@ -11,13 +10,7 @@ class AutomotiveDriverHistoryProcessor {
     final static Pattern INTEGER_OR_DOUBLE = ~/^\d+|\d+\.\d+$/
     final static Pattern MILITARY_TIME_FORMAT = ~/^[0-2][0-9]:[0-6][0-9]$/
 
-    static void main(String... args) {
-        AutomotiveDriverHistory history = new AutomotiveDriverHistory()
-        List<String> textInputs = new InputHandlerFactory(args).getInputHandler().getTextInputs()
-
-        textInputs.each { String textInput -> processInput(history, textInput) }
-        history.drivers.sort().each { AutomotiveDriver driverLog -> println driverLog }
-    }
+    AutomotiveDriverHistoryProcessor() {}
 
     void processInput(AutomotiveDriverHistory history, String input) {
         List<String> args = input.split()
