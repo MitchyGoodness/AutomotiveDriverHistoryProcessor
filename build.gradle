@@ -1,8 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'application'
 
-mainClassName = 'automotivedriverhistoryprocessor.Main'
-
 version '2.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -14,6 +12,8 @@ repositories {
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.11'
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testRuntime "net.bytebuddy:byte-buddy:1.9.3"
+    testRuntime "org.objenesis:objenesis:2.6"
 }
 
 task fatJar(type: Jar) {
