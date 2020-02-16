@@ -7,46 +7,6 @@ import spock.lang.Unroll
 import java.time.LocalTime
 
 class TripSpec extends Specification {
-
-    void "trip.getAverageSpeed returns accurate speed"() {
-        given:
-        LocalTime startTime = LocalTime.of(0, 0)
-        LocalTime endTime = LocalTime.of(1, 30)
-        Double distanceInMiles = 15
-
-        when: "Trip of 15 miles driven in 1 hour 30 minutes"
-        Trip trip = new Trip(startTime, endTime, distanceInMiles)
-
-        then: "Average speed is 10 mph"
-        trip.getAverageSpeed() == 10
-    }
-
-    void "trip.getAverageSpeed returns 0 mph when no distance was traveled"() {
-        given:
-        LocalTime startTime = LocalTime.of(0, 0)
-        LocalTime endTime = LocalTime.of(1, 0)
-        Double distanceInMiles = 0
-
-        when: "Trip of 0 miles driven in 1 hour"
-        Trip trip = new Trip(startTime, endTime, distanceInMiles)
-
-        then: "Average speed is 0 mph"
-        trip.getAverageSpeed() == 0
-    }
-
-    void "trip.getAverageSpeed returns 0 mph when no time has passed"() {
-        given:
-        LocalTime startTime = LocalTime.of(0, 0)
-        LocalTime endTime = LocalTime.of(0, 0)
-        Double distanceInMiles = 10
-
-        when: "Trip of 10 miles driven in 0 hours"
-        Trip trip = new Trip(startTime, endTime, distanceInMiles)
-
-        then: "Average speed is 0 mph"
-        trip.getAverageSpeed() == 0
-    }
-
     @Unroll
     void "trip.getAverageSpeed returns #averageSpeed mph when distance is #distance miles and duration is #duration minutes"() {
         given:
@@ -63,15 +23,23 @@ class TripSpec extends Specification {
         0        | 10       | 0
     }
 
-    void "Speed is at minimum tolerance"() {
+    void "trip.isSpeedWithinAcceptedTolerances return #withinTolerances for average speed #averageSpeed mph"() {
         given:
         LocalTime startTime = LocalTime.of(0, 0)
-        LocalTime endTime = LocalTime.of(1, 0)
+        LocalTime endTime = startTime.plusMinutes(duration)
+        Trip trip = new Trip(startTime, endTime, distance as Integer)
 
-        when: "Trip of 5 miles is driven in 1 hour"
-        Trip trip = new Trip(startTime, endTime, 5)
+        expect:
+        trip.isSpeedAboveMinTolerance() == aboveMinTolerance
+        trip.isSpeedBelowMaxTolerance() == belowMaxTolerance
+        trip.isSpeedWithinAcceptedTolerances() == withinTolerances
 
-        then: "Speed is above minimum tolerance"
-        trip.isSpeedAboveMinTolerance()
+        where:
+        duration | distance | averageSpeed | aboveMinTolerance | belowMaxTolerance | withinTolerances
+        90       | 15       | 10           | true              | true              | true
+        60       | 5        | 5            | true              | true              | true
+        60       | 4.9      | 4.9          | false             | true              | false
+        60       | 100      | 100          | true              | true              | true
+        60       | 100.1    | 100.1        | true              | false             | false
     }
 }
