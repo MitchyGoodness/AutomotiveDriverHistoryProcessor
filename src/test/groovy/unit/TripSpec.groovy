@@ -23,7 +23,7 @@ class TripSpec extends Specification {
         0        | 10       | 0
     }
 
-    void "trip.isSpeedWithinAcceptedTolerances return #withinTolerances for average speed #averageSpeed mph"() {
+    void "trip.isSpeedWithinAcceptedTolerances returns #withinTolerances for average speed #averageSpeed mph"() {
         given:
         LocalTime startTime = LocalTime.of(0, 0)
         LocalTime endTime = startTime.plusMinutes(duration)
