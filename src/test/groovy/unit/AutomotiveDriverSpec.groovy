@@ -55,13 +55,13 @@ class AutomotiveDriverSpec extends Specification {
     @Unroll
     void "Comparing #driverName who drove #driverDistance miles to #otherDriverName who drove #otherDriverDistance miles returns #expectedResult"() {
         given: 'Two drivers'
-        AutomotiveDriver driver = Stub(AutomotiveDriver)
-        driver.getTotalDistance() >> driverDistance
-        driver.getName() >> driverName
+        LocalTime time = LocalTime.of(0, 0)
 
-        AutomotiveDriver otherDriver = Stub(AutomotiveDriver)
-        otherDriver.getTotalDistance() >> otherDriverDistance
-        otherDriver.getName() >> otherDriverName
+        AutomotiveDriver driver = new AutomotiveDriver(driverName)
+        driver.trips.push(new Trip(time, time, driverDistance))
+
+        AutomotiveDriver otherDriver = new AutomotiveDriver(otherDriverName)
+        otherDriver.trips.push(new Trip(time, time, otherDriverDistance))
 
         expect:
         driver.compareTo(otherDriver) == expectedResult
@@ -69,8 +69,9 @@ class AutomotiveDriverSpec extends Specification {
         where:
         driverDistance | driverName | otherDriverDistance | otherDriverName | expectedResult
         100            | "Carl"     | 100                 | "Carl"          | 0
-        100            | "Allen"    | 100                 | "Carl"          | 1
-        100            | "Carl"     | 100                 | "Allen"         | -1
+        100            | "Allen"    | 100                 | "Carl"          | -1
+        100            | "Carl"     | 100                 | "Allen"         | 1
         50             | "Allen"    | 100                 | "Allen"         | 1
+
     }
 }
