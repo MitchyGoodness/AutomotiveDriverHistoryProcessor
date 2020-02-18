@@ -74,4 +74,26 @@ class AutomotiveDriverSpec extends Specification {
         50             | "Allen"    | 100                 | "Allen"         | 1
 
     }
+
+    @Unroll
+    void "toString returns driver's name and statistics"() {
+        given:
+        LocalTime startTime = LocalTime.of(0, 0)
+        LocalTime endTime = LocalTime.of(1, 0)
+
+        AutomotiveDriver driver = new AutomotiveDriver("Carl")
+
+        driver.trips.push(new Trip(startTime, endTime, trip1Distance))
+        driver.trips.push(new Trip(startTime, endTime, trip2Distance))
+        driver.trips.push(new Trip(startTime, endTime, trip3Distance))
+
+
+        expect:
+        driver.toString() == expectedString
+
+        where:
+        trip1Distance | trip2Distance | trip3Distance | expectedString
+        300           | 10            | 20            | 'Carl 330 miles @ 110 mph'
+        0             | 0             | 0             | "Carl 0 miles"
+    }
 }
