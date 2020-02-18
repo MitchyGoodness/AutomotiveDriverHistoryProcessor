@@ -8,10 +8,6 @@ import spock.lang.Unroll
 import java.time.LocalTime
 
 class AutomotiveDriverSpec extends Specification {
-    void setupSpec() {
-
-    }
-
     @Unroll
     void "addTrip() adds trip to list of trips if its speed is within acceptable tolerances"() {
         given:
