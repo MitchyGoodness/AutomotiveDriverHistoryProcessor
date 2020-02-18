@@ -7,14 +7,14 @@ import spock.lang.Unroll
 import java.time.LocalTime
 
 class TripSpec extends Specification {
-    void "MINIMUM_SPEED_TOLERANCE is not null"() {
+    void "Integer MINIMUM_SPEED_TOLERANCE is not null"() {
         expect:
-        Trip.MINIMUM_SPEED_TOLERANCE
+        Trip?.MINIMUM_SPEED_TOLERANCE instanceof Integer
     }
 
-    void "MAXIMUM_SPEED_TOLERANCE is not null"() {
+    void "Integer MAXIMUM_SPEED_TOLERANCE is not null"() {
         expect:
-        Trip.MAXIMUM_SPEED_TOLERANCE
+        Trip?.MAXIMUM_SPEED_TOLERANCE instanceof Integer
     }
 
     void "constructor initializes correctly"() {
