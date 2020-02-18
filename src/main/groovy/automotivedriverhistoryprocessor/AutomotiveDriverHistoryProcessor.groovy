@@ -8,7 +8,7 @@ import java.util.regex.Pattern
 
 class AutomotiveDriverHistoryProcessor {
     final static Pattern INTEGER_OR_DOUBLE = ~/^\d+|\d+\.\d+$/
-    final static Pattern MILITARY_TIME_FORMAT = ~/^[0-2][0-9]:[0-6][0-9]$/
+    final static Pattern MILITARY_TIME_FORMAT = ~/^([0-1][0-9]|2[0-3]):[0-6][0-9]$/
 
     List<String> textInputs
     AutomotiveDriverHistory history
