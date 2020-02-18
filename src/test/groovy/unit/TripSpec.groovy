@@ -27,7 +27,7 @@ class TripSpec extends Specification {
         when: 'creating trip object'
         Trip trip = new Trip(startTime, endTime, distance)
 
-        then: 'startTime, endTime, and distance are populated correctly'
+        then: 'startTime, endTime, and distance are initialized correctly'
         trip.startTime == startTime
         trip.endTime == endTime
         trip.distance == distance
