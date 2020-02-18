@@ -15,14 +15,14 @@ class AutomotiveDriverSpec extends Specification {
         when: 'creating AutomotiveDriver object'
         AutomotiveDriver driver = new AutomotiveDriver(name)
 
-        then: 'name and trips are populated correctly'
+        then: 'name and trips are initialized correctly'
         driver.name == name
         driver.trips instanceof List<Trip>
         driver.trips.size() == 0
     }
 
     @Unroll
-    void "addTrip() adds trip to list of trips if its speed is within acceptable tolerances"() {
+    void "addTrip adds trip to list of trips if its speed is within acceptable tolerances"() {
         given:
         AutomotiveDriver driver = new AutomotiveDriver("Carl")
         Trip trip = Mock(Trip)
