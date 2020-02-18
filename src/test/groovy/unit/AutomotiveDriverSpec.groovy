@@ -83,7 +83,6 @@ class AutomotiveDriverSpec extends Specification {
         driver.trips.push(new Trip(startTime, endTime, trip2Distance))
         driver.trips.push(new Trip(startTime, endTime, trip3Distance))
 
-
         expect:
         driver.toString() == expectedString
 
