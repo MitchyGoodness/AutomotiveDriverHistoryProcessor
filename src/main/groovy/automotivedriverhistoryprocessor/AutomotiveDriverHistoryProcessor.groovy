@@ -19,11 +19,11 @@ class AutomotiveDriverHistoryProcessor {
     }
 
     AutomotiveDriverHistory getHistory() {
-        processInputs(textInputs)
+        processInputs()
         this.history
     }
 
-    void processInputs(List<String> textInputs) {
+    void processInputs() {
         textInputs.each { String textInput -> processInput(textInput) }
     }
 
