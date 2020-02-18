@@ -14,16 +14,23 @@ class AutomotiveDriverHistory {
     }
 
     void addDriver(String name) {
+        if(getDriver(name))
+            throw new InvalidAutomotiveDriverLogInput("$name is already listed as a driver.")
+
         drivers.add(new AutomotiveDriver(name))
     }
 
-    void addTrip(String name, LocalTime startDate, LocalTime endDate, Double distance) {
-        AutomotiveDriver driver = drivers.find { it.name == name }
+    AutomotiveDriver getDriver(String name) {
+        drivers.find { it.name == name }
+    }
 
-        if (driver)
-            driver.addTrip(new Trip(startDate, endDate, distance))
-        else
+    void addTrip(String name, LocalTime startDate, LocalTime endDate, Double distance) {
+        AutomotiveDriver driver = getDriver(name)
+
+        if (!driver)
             throw new InvalidAutomotiveDriverLogInput("$name not found in list of automotive drivers.")
+
+        driver.addTrip(new Trip(startDate, endDate, distance))
     }
 
     @Override
