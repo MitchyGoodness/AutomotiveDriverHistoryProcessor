@@ -18,16 +18,16 @@ class TripSpec extends Specification {
         Trip.MAXIMUM_SPEED_TOLERANCE
     }
 
-    void "constructor populates startTime, endTime, and distance"() {
+    void "constructor initializes correctly"() {
         given:
         LocalTime startTime = LocalTime.of(0, 0)
         LocalTime endTime = LocalTime.of(1, 0)
         Integer distance = 5
 
-        when: 'creating trip object'
+        when: 'calling constructor'
         Trip trip = new Trip(startTime, endTime, distance)
 
-        then: 'startTime, endTime, and distance are initialized correctly'
+        then: 'object is initialized correctly'
         trip.startTime == startTime
         trip.endTime == endTime
         trip.distance == distance

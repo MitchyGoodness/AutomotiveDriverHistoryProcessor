@@ -8,14 +8,14 @@ import spock.lang.Unroll
 import java.time.LocalTime
 
 class AutomotiveDriverSpec extends Specification {
-    void "constructor populates name and initializes trips as an empty list"() {
+    void "constructor initializes correctly"() {
         given:
         String name = 'Bob'
 
-        when: 'creating AutomotiveDriver object'
+        when: 'calling constructor'
         AutomotiveDriver driver = new AutomotiveDriver(name)
 
-        then: 'name and trips are initialized correctly'
+        then: 'object is initialized correctly'
         driver.name == name
         driver.trips instanceof List<Trip>
         driver.trips.size() == 0
