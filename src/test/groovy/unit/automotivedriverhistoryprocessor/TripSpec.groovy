@@ -1,4 +1,4 @@
-package unit
+package unit.automotivedriverhistoryprocessor
 
 import automotivedriverhistoryprocessor.Trip
 import spock.lang.Specification
