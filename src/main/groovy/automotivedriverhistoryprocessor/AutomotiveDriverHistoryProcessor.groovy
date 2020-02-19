@@ -80,7 +80,8 @@ class AutomotiveDriverHistoryProcessor {
         distance as Double
     }
 
-    private void validateTimeInput(String timeType, String timeStamp) {
+    private void validateTimeInput(String timeType, String timeStamp)
+            throws InvalidAutomotiveDriverLogInput, InvalidMilitaryTimeStamp {
         if (!timeStamp)
             throw new InvalidAutomotiveDriverLogInput($/Missing input "$timeType"/$)
 
