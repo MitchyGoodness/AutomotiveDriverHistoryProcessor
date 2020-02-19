@@ -80,19 +80,19 @@ class AutomotiveDriverHistoryProcessor {
         distance as Double
     }
 
-    private void validateDistanceInput(String distance) throws InvalidAutomotiveDriverLogInput {
-        if (!distance)
-            throw new InvalidAutomotiveDriverLogInput($/Missing input "distance" for trip log./$)
-
-        if (!(distance ==~ INTEGER_OR_DOUBLE))
-            throw new InvalidAutomotiveDriverLogInput($/Expected double or integer format for trip distance, got "$distance"./$)
-    }
-
     private void validateTimeInput(String timeType, String timeStamp) {
         if (!timeStamp)
             throw new InvalidAutomotiveDriverLogInput($/Missing input "$timeType"/$)
 
         if (!(timeStamp ==~ MILITARY_TIME_FORMAT))
             throw new InvalidMilitaryTimeStamp($/Expected $timeType in kk:mm (military time) format, got "$timeStamp"./$)
+    }
+
+    private void validateDistanceInput(String distance) throws InvalidAutomotiveDriverLogInput {
+        if (!distance)
+            throw new InvalidAutomotiveDriverLogInput($/Missing input "distance" for trip log./$)
+
+        if (!(distance ==~ INTEGER_OR_DOUBLE))
+            throw new InvalidAutomotiveDriverLogInput($/Expected double or integer format for trip distance, got "$distance"./$)
     }
 }
