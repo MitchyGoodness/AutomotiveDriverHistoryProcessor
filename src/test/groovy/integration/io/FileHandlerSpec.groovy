@@ -2,12 +2,14 @@ package integration.io
 
 import io.FileHandler
 import spock.lang.Specification
+import spock.lang.Unroll
 
 
-class FileHandlerSpec extends Specification{
+class FileHandlerSpec extends Specification {
+    @Unroll
     void "constructor initializes and validates correctly for good file path"() {
         given:
-        String filePath = "src/test/resources/AutomotiveDriverInput.txt"
+        String filePath = "src/test/resources/${fileName}.txt"
 
         when: 'calling constructor'
         FileHandler fileHandler = new FileHandler(filePath)
@@ -15,6 +17,11 @@ class FileHandlerSpec extends Specification{
         then: 'fields are set and validation passes'
         fileHandler.filePath == filePath
         fileHandler.file == new File(filePath)
+
+        where:
+        fileName                | _
+        "AutomotiveDriverInput" | _
+        "empty"                 | _
     }
 
     void "constructor throws exception for bad file path"() {
