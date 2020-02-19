@@ -3,7 +3,6 @@ package unit.exception
 import exception.InvalidAutomotiveDriverLogInput
 import spock.lang.Specification
 
-
 class InvalidAutomotiveDriverLogInputSpec extends Specification {
     void "default constructor initializes correctly"() {
         given: 'calling constructor'
