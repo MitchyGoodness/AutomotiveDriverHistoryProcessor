@@ -25,4 +25,8 @@ task fatJar(type: Jar) {
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '6.1.1'
+}
+
 defaultTasks 'clean', 'build', 'test', 'fatJar'
