@@ -30,7 +30,7 @@ This should download gradle and run the default tasks, which are:
 * clean
 * build
 * test - runs the automated test suite found in src/test
-* fatJar - this will package the project as a java jar in the build/libs folder
+* fatJar - this will package the project as a Java jar in the build/libs folder
 
 ---
 
@@ -132,21 +132,22 @@ Data model cardinality:
 1 History to many Drivers
 1 Driver to many Trips
 
-While developing this, I asked a peer to review my design and he pointed out the validation should probably be separated
-from the History, Driver, and Trip classes and moved into the Processor. He also suggested I use a more java project 
-package structure. Taking my peer's input seriously, I moved the validation to the Processor class and liked the overall
-organization of the java project structure.
+While developing this Groovy application, I asked a peer to review my design and it was pointed out the validation 
+should probably be separated from the History, Driver, and Trip classes and moved into the Processor. It was also 
+suggested I use a more Java project package structure. Taking my peer's input seriously, I moved the validation to the 
+Processor class.
 
 Once all of the criteria was met and the application worked from beginning to the end, I started work on the automated 
 tests. This was unfortunate, since it would have been better to use TDD (test driven development) or BDD (behavior 
 driven development) to check my design and maintain simplicity as I developed. Admittedly, this was just a poor habit I 
-will need to correct at a later date.
+will have to correct at a later date.
 
-Realizing I did not want to include testing with the final production version of the project, I decided to wrap the 
-project into a gradle project and keep the tests separate from the main application. Once the project was setup for 
-Gradle, I experimented with creating a deployable package like a java jar. I was pleasantly surprised to realize, 
-the build could be a java jar. This meant the production bundle would be easy to run in almost any environment since 
-Java is such a well know language.  
+Being familiar with Grails I started with a flat and simple Groovy project. After the peer review and some reflection, I
+decided I did not want to include testing with the final production version of the project. Instead, it was wrapped in a
+Gradle project which kept the tests separate from the main application. Once the project was ready for deployment, I 
+experimented with creating a deployable package like a Java jar and was surprised to realize, the build could be a 
+regular Java jar. This meant the deployable bundle would be easy to run in almost any environment since Java is such a 
+well know language.
 
 --- 
 
