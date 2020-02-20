@@ -2,8 +2,8 @@ apply plugin: 'groovy'
 apply plugin: 'application'
 
 version '2.0'
-
 sourceCompatibility = 1.8
+mainClassName = 'automotivedriverhistoryprocessor.Main'
 
 repositories {
     mavenCentral()
@@ -24,3 +24,5 @@ task fatJar(type: Jar) {
         attributes 'Main-Class': 'automotivedriverhistoryprocessor.Main'
     }
 }
+
+defaultTasks 'clean', 'build', 'test', 'fatJar'
