@@ -120,7 +120,7 @@ Automotive Data can be grouped into four main Classes:
 * Driver
 * Trip
 
-The driver and trip class were more or less spelled out in the requirements but a container for the collection of 
+The driver and trip class were spelled out in the requirements but a container for the collection of 
 drivers is needed. The container would need an appropriate name, such as a history or a log. The history would track a 
 list of drivers calling the appropriate functions on the individual drivers as needed. Each driver class would keep 
 track of its respective list of trips. 
