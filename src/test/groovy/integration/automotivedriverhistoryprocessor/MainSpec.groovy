@@ -7,9 +7,10 @@ import spock.lang.Unroll
 class MainSpec extends Specification {
     @Unroll
     void "Take a file of inputs and print list of sorted drivers and their statistics"() {
-        given: "Test setup"
+        given: "File"
         String filePath = "src/test/resources/${fileName}.txt"
 
+        and: "Replace stdout buffer with one accessible within the test"
         ByteArrayOutputStream buffer = new ByteArrayOutputStream()
         System.out = new PrintStream(buffer)
 
@@ -24,7 +25,7 @@ class MainSpec extends Specification {
 
         where:
         fileName                | expectedOutput
-        "AutomotiveDriverInput" | "mitch 90 miles @ 30 mph\nmark 49 miles @ 75 mph\ntina 0 miles"
+        "AutomotiveDriverInput" | "mitch: 90 miles @ 30 mph\nmark: 49 miles @ 75 mph\ntina: 0 miles"
         "empty"                 | ""
     }
 }

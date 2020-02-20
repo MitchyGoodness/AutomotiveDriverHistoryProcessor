@@ -8,7 +8,6 @@ class InvalidMilitaryTimeStampSpec extends Specification {
         given: 'calling constructor'
         Exception e = new InvalidMilitaryTimeStamp()
 
-
         expect: 'exception is initialized correctly'
         e.message == null
     }
@@ -16,7 +15,6 @@ class InvalidMilitaryTimeStampSpec extends Specification {
     void "constructor initializes correctly"() {
         given: 'calling constructor'
         Exception e = new InvalidMilitaryTimeStamp("Message")
-
 
         expect: 'exception is initialized correctly'
         e.message == "Message"

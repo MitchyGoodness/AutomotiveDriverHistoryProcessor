@@ -4,7 +4,6 @@ import io.FileHandler
 import spock.lang.Specification
 import spock.lang.Unroll
 
-
 class FileHandlerSpec extends Specification {
     @Unroll
     void "constructor initializes and validates correctly for good file path"() {

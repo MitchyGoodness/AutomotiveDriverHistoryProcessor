@@ -8,7 +8,6 @@ class InvalidAutomotiveDriverLogInputSpec extends Specification {
         given: 'calling constructor'
         Exception e = new InvalidAutomotiveDriverLogInput()
 
-
         expect: 'exception is initialized correctly'
         e.message == null
     }
@@ -16,7 +15,6 @@ class InvalidAutomotiveDriverLogInputSpec extends Specification {
     void "constructor initializes correctly"() {
         given: 'calling constructor'
         Exception e = new InvalidAutomotiveDriverLogInput("Message")
-
 
         expect: 'exception is initialized correctly'
         e.message == "Message"

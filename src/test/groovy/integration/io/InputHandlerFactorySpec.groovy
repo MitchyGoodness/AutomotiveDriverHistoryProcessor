@@ -28,7 +28,7 @@ class InputHandlerFactorySpec extends Specification {
         inputHandlerFactory.getInputHandler().class == FileHandler
     }
 
-    void "getInputHandler returns Stdin when no file path is provided"() {
+    void "getInputHandler returns stdin when no file path is provided"() {
         given:
         String[] args = null
 

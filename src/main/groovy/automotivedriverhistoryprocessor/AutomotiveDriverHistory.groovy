@@ -14,7 +14,7 @@ class AutomotiveDriverHistory {
     }
 
     void addDriver(String name) {
-        if(getDriver(name))
+        if (getDriver(name))
             throw new InvalidAutomotiveDriverLogInput("$name is already listed as a driver.")
 
         drivers.add(new AutomotiveDriver(name))

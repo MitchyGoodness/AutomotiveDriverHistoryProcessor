@@ -81,7 +81,6 @@ class AutomotiveDriverSpec extends Specification {
         100            | "Allen"    | 100                 | "Carl"          | -1
         100            | "Carl"     | 100                 | "Allen"         | 1
         50             | "Allen"    | 100                 | "Allen"         | 1
-
     }
 
     @Unroll
@@ -101,7 +100,7 @@ class AutomotiveDriverSpec extends Specification {
 
         where:
         trip1Distance | trip2Distance | trip3Distance | expectedString
-        300           | 10            | 20            | 'Carl 330 miles @ 110 mph'
-        0             | 0             | 0             | "Carl 0 miles"
+        300           | 10            | 20            | 'Carl: 330 miles @ 110 mph'
+        0             | 0             | 0             | "Carl: 0 miles"
     }
 }

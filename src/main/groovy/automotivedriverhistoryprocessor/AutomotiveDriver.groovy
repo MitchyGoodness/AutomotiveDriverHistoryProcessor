@@ -18,13 +18,13 @@ class AutomotiveDriver implements Comparable<AutomotiveDriver> {
     }
 
     Integer getTotalDistance() {
-        Math.round( (trips.distance.sum() ?: 0) as Double )
+        Math.round((trips.distance.sum() ?: 0) as Double)
     }
 
     Integer getAverageSpeed() {
         List<Double> averages = trips.collect { it.getAverageSpeed() }
 
-        Math.round(averages.sum() ? (averages.sum() / averages.size()) as Double : 0 )
+        Math.round(averages.sum() ? (averages.sum() / averages.size()) as Double : 0)
     }
 
     @Override
@@ -37,8 +37,8 @@ class AutomotiveDriver implements Comparable<AutomotiveDriver> {
         Integer totalDistance = getTotalDistance()
 
         if (totalDistance)
-            "$name $totalDistance miles @ $averageSpeed mph"
+            "$name: $totalDistance miles @ $averageSpeed mph"
         else
-            "$name $totalDistance miles"
+            "$name: $totalDistance miles"
     }
 }
